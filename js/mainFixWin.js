@@ -1,3 +1,7 @@
+// popup image can be no greater than certain size or blows out screen
+// have quotes be uniform
+
+
 $(document).ready(function() {
     var zi = 1;
     var empty_square = 16;
@@ -97,12 +101,33 @@ $(document).ready(function() {
             var win_left = parseInt($("#board div:nth-of-type(" + i + ")").css("left"));
             var win_top = parseInt($("#board div:nth-of-type(" + i + ")").css("top"));
             if (win_left != left || win_top != top) {
+                $("#new-image").css({
+                color: "#999",
+                borderColor: "#e6e6e6"
+            });
                 return false;
             }
         }
-        $("#new-image").css({
-            color: "#000",
-            borderColor: "#000"
+            
+            $("#board").animate({
+            borderColor: "#F89406",
+            }, 500, function() {
+           $('#board').addClass('change');
+           $('#new-image').css({
+            color: "#F2784B",
+            borderColor: "#F2784B"
+           });
+            $('#board').click(function() {
+                $(this).removeClass('change');
+            });
+            $('#new-image').click(function() {
+                $('#board').removeClass('change');
+                $(this).css({
+                color: "#999",
+                borderColor: "#e6e6e6"
+                });
+            });
+
         });
     }
 
@@ -156,6 +181,8 @@ $(document).ready(function() {
             // random possible move is stored in swap_square and used as the clicked_square
             Move(swap_square, square_size, false);
         }
+        $('#board').removeClass('change');
+        $('#new-image').css({color: "#999", borderColor: "#e6e6e6" });
     }
 
     function Move(clicked_square, square_size, do_animate) {
@@ -238,6 +265,6 @@ $(document).ready(function() {
     });
 
     // initialize game in #game_object div
-    $('#game_object').scrambler(200);
+    $('#game_object').scrambler(80);
 
 });
