@@ -1,0 +1,139 @@
+#game_object {
+	background-color: #ffffff;
+	margin: 20px auto;
+	position: relative;
+}
+
+#board div {
+	background-color: #ffffff;
+	background-attachment: scroll;
+	background-repeat: no-repeat;
+	position: absolute;
+	text-align: center;
+
+	/* CSS3 Shadow */
+
+	-moz-box-shadow: inset 0 0 20px #555555;
+	-webkit-box-shadow: inset 0 0 20px #555555;
+	-ms-box-shadow: inset 0 0 20px #555555;
+	-o-box-shadow: inset 0 0 20px #555555;
+	box-shadow: inset 0 0 20px #555555;
+}
+
+
+
+
+
+/*.game-controls  {
+	margin: 20px auto;
+  	padding-left: 31.3%;
+	position: relative;
+}*/
+
+/* Modal Code */
+
+/* Outer */
+
+.popup {
+	width: 100%;
+	height: 100%;
+	display: none;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background: rgba(0,0,0,0.75);
+	z-index: 1000;
+}
+
+/* Inner */
+
+.popup-inner {
+	padding: 40px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	box-shadow: 0px 2px 6px rgba(0,0,0,1);
+	border-radius: 3px;
+	background: #fff;
+	z-index: 1000;
+}
+
+.popup-inner p a {
+  font-size: 16px;
+    color: #000;
+    text-decoration: none;
+}
+/* the x icon */
+.popup-inner a {
+   text-decoration: none;
+}
+
+/* Close Button */ 
+
+.popup-close {
+	width: 30px;
+	height: 30px;
+	padding-top: 4px;
+	display: inline-block;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	transition: ease 0.25s all;
+	-webkit-transform: translate(50%, -50%);
+	transform: translate(50%, -50%);
+	border-radius: 1000px;
+	background: rgba(0,0,0,0.8);
+	font-family: Arial, Sans-Serif;
+	font-size: 20px;
+	text-align: center;
+	line-height: 100%;
+	color: #fff;
+}
+
+.popup-close:hover {
+	-webkit-transform:translate(50%, -50%) rotate(180deg);
+	transform: translate(50%, -50%) rotate(180deg);
+	background: rgba(0,0,0,1);
+	text-decoration: none;
+}
+
+.image {
+	width: 100%;
+	height: 700px;
+}
+
+
+.btns {
+margin-top: 10px;
+margin-bottom: 10px;
+	width: 100%;
+	line-height: 20px;
+	text-align: center;
+}
+
+
+button {
+	background-color: transparent;
+	  font-size: 10px;
+	  cursor: pointer;
+	color: #999;
+	border: 1px solid #e6e6e6;
+	border-radius: 4px;
+	-webkit-transition: border .3s ease-in-out;
+	transition: border .3s ease-in-out;
+	text-transform: uppercase;
+  letter-spacing: .1em;
+    display: inline-block;
+  padding: 2px 6px 3px;
+  position: relative;
+    overflow: hidden;
+}
+
+button:active {
+background-color: transparent;
+  color: #000;
+  border-color: #000;
+}
+
