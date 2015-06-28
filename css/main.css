@@ -11,17 +11,10 @@
     text-align: center;
     /* CSS3 Shadow */
     
-    -moz-box-shadow: inset 0 0 20px #555555;
     -webkit-box-shadow: inset 0 0 20px #555555;
-    -ms-box-shadow: inset 0 0 20px #555555;
-    -o-box-shadow: inset 0 0 20px #555555;
     box-shadow: inset 0 0 20px #555555;
 }
-/*.game-controls  {
-	margin: 20px auto;
-  	padding-left: 31.3%;
-	position: relative;
-}*/
+
 /* Modal Code */
 /* Outer */
 
@@ -38,39 +31,47 @@
 /* Inner */
 
 .popup-inner {
-    padding: 40px;
+    padding: 10px;
     position: absolute;
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 1);
+    -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 1);
     border-radius: 3px;
     background: #fff;
     z-index: 1000;
 }
 .popup-inner p a {
-    font-size: 16px;
-    color: #000;
-    text-decoration: none;
+  text-decoration: none;
+  font-size: 12px;
+  cursor: pointer;
+  color: #999;
+  -webkit-transition: border .3s ease-in-out;
+  transition: border .3s ease-in-out;
+  text-transform: uppercase;
+  letter-spacing: .1em;
 }
-/* the x icon */
 
+/* the x icon */
 .popup-inner a {
     text-decoration: none;
 }
 /* Close Button */
-
 .popup-close {
     width: 30px;
     height: 30px;
     padding-top: 4px;
     display: inline-block;
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: 0;
+    right: 0;
+    -webkit transition: ease 0.25s all;
     transition: ease 0.25s all;
     -webkit-transform: translate(50%, -50%);
+    -ms-transform: translate(50%, -50%);
     transform: translate(50%, -50%);
     border-radius: 1000px;
     background: rgba(0, 0, 0, 0.8);
@@ -82,6 +83,7 @@
 }
 .popup-close:hover {
     -webkit-transform: translate(50%, -50%) rotate(180deg);
+    -ms-transform: translate(50%, -50%);
     transform: translate(50%, -50%) rotate(180deg);
     background: rgba(0, 0, 0, 1);
     text-decoration: none;
@@ -89,6 +91,9 @@
 .image {
     width: 100%;
     height: 700px;
+    background-size: cover;
+    max-width: 500px;
+    max-height: 500px;
 }
 .btns {
     margin-top: 10px;
@@ -100,6 +105,7 @@
 button {
     background-color: transparent;
     font-size: 10px;
+    margin-top: 10px;
     cursor: pointer;
     color: #999;
     border: 1px solid #e6e6e6;
@@ -124,11 +130,11 @@ button:active {
 
 #board.change:after {
 	content: '';
-  position: absolute;
-  width: inherit;
-  height: inherit;
-  top: 0;
-  left: 0;
-  background: rgba(242, 120, 75, 0.5); 
-    z-index: 505;
+	position: absolute;
+	width: inherit;
+	height: inherit;
+	top: 0;
+	left: 0;
+	background: rgba(242, 120, 75, 0.4); 
+	z-index: 505;
 }
