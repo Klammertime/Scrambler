@@ -1,3 +1,8 @@
+
+
+;(function($) {
+
+
 $(document).ready(function() {
     var zi = 1;
     var empty_square = 16;
@@ -25,7 +30,7 @@ $(document).ready(function() {
                 height: sq_size,
                 width: sq_size,
                 lineHeight: sq_size,
-                backgroundSize: board_with_padding + " " + board_with_padding
+                backgroundSize: board_with_padding + ' ' + board_with_padding
             });
 
             $('#board').css({
@@ -36,20 +41,32 @@ $(document).ready(function() {
             });
 
             for (var i = 0; i < 16; i++) {
-                $('#board').append("<div style='left:" + ((i % 4) * square_size) + "px; top: " + Math.floor(i / 4) * square_size + "px; width: " + square_size + "px; height: " + square_size + "px; background-position: " + (-(i % 4) * square_size) + "px " + -Math.floor(i / 4) * square_size + "px; '></div>");
+                $('#board').append('<div style="left:' + ((i % 4) * square_size) + 'px; top: ' + Math.floor(i / 4) * square_size + 
+                    'px; width: ' + square_size + 'px; height: ' + square_size + 'px; background-position: ' + (-(i % 4) * square_size) + 
+                    'px ' + -Math.floor(i / 4) * square_size + 'px; "></div>');
             }
 
+            $(game_object_element).before('<section class="btns"></section>');
+            $('.btns').append('<button type="button" value="Easy" id="easy"><label>Easy</label></button>' +
+                '<button type="button" value="Medium" id="medium"><label>Medium</label></button>' +
+                '<button type="button" value="Hard" id="hard"><label>Hard</label></button>' +
+                '<button type="button" value="Unshuffle" id="unshuffle"><label>Unshuffle</label></button>' +
+                '<button type="button" value="Help" class="btn" data-popup-open="popup-1"><label>Help</label></button>' +
+                '<button type="button" value="New_image" id="new-image"><label>New Image</label></button>');
+
+
+
             $('[data-popup-open]').after('<div class="popup" data-popup="popup-1"></div');
-            $(".popup").html('<div class="popup-inner"></div>');
-            $(".popup-inner").append("<p class='image'></p><p><a data-popup-close='popup-1' href='#'>Close</a></p>" +
-                "<a class='popup-close' data-popup-close='popup-1' href='#'>x</a>");
+            $('.popup').html('<div class="popup-inner"></div>');
+            $('.popup-inner').append('<p class="image"></p><p><a data-popup-close="popup-1" href="#">Close</a></p>' +
+                '<a class="popup-close" data-popup-close="popup-1" href="#">x</a>');
 
             getImages(square_size);
 
             // Emptys the 16th square.
-            $('#board').children("div:nth-of-type(" + empty_square + ")").css({
-                backgroundImage: "",
-                background: "#ffffff"
+            $('#board').children('div:nth-of-type(' + empty_square + ')').css({
+                backgroundImage: '',
+                background: '#ffffff'
             });
 
             // Attach a click event to each of the squares, or divs.
@@ -62,7 +79,7 @@ $(document).ready(function() {
             });
 
             $('#medium').click(function() {
-                Shuffle(square_size, 20);
+                Shuffle(square_size, 15);
             });
 
             $('#hard').click(function() {
@@ -81,9 +98,9 @@ $(document).ready(function() {
 
     function unShuffle(square_size) {
         for (var i = 1; i <= 16; i++) {
-            var left = (((i - 1) % 4) * square_size) + "px";
-            var top = Math.floor((i - 1) / 4) * square_size + "px";
-            $("#board div:nth-of-type(" + i + ")").css({
+            var left = (((i - 1) % 4) * square_size) + 'px';
+            var top = Math.floor((i - 1) / 4) * square_size + 'px';
+            $('#board div:nth-of-type(' + i + ')').css({
                 left: left,
                 top: top
             });
@@ -94,45 +111,66 @@ $(document).ready(function() {
         for (var i = 1; i <= 16; i++) {
             var left = (((i - 1) % 4) * square_size);
             var top = Math.floor((i - 1) / 4) * square_size;
-            var win_left = parseInt($("#board div:nth-of-type(" + i + ")").css("left"));
-            var win_top = parseInt($("#board div:nth-of-type(" + i + ")").css("top"));
+            var win_left = parseInt($('#board div:nth-of-type(' + i + ')').css('left'));
+            var win_top = parseInt($('#board div:nth-of-type(' + i + ')').css('top'));
             if (win_left != left || win_top != top) {
+                $('#new-image').css({
+                color: '#999',
+                borderColor: '#e6e6e6'
+            });
                 return false;
             }
         }
-        $("#new-image").css({
-            color: "#000",
-            borderColor: "#000"
+            
+            $('#board').animate({
+                borderColor: '#F89406',
+            }, 500, function() {
+           $('#new-image').css({
+                color: '#F2784B',
+                borderColor: '#F2784B'
+           });
+            Ungrid();
+            $('#board').click(function() {
+                $(this).removeClass('change');
+            });
+            $('#new-image').click(function() {
+                $(this).css({
+                    color: '#999',
+                    borderColor: '#e6e6e6'
+                });
+            });
+
         });
     }
 
     function getImages(square_size) {
         var image_index = Math.floor(Math.random() * 700);
-        var bg_size = (square_size * 4 + "px") + " " + (square_size * 4 + "px");
-        g_image_for_overlay = "https://unsplash.it/" + (square_size * 4) + "/" + (square_size * 4) + "?image=" + image_index;
+        var bg_size = (square_size * 4 + 'px') + ' ' + (square_size * 4 + 'px');
+        g_image_for_overlay = 'https://unsplash.it/' + (square_size * 4) + '/' + (square_size * 4) + '?image=' + image_index;
         $('#board').children('div').css({
-            backgroundImage: "url('" + g_image_for_overlay + "')"
+            backgroundImage: 'url("' + g_image_for_overlay + '")'
         });
-        $('#board').children("div:nth-of-type(" + empty_square + ")").css({
-            backgroundImage: "",
-            background: "#ffffff"
+        $('#board').children('div:nth-of-type(' + empty_square + ')').css({
+            backgroundImage: '',
+            background: '#ffffff'
         });
         $('.image').css({
-            backgroundImage: "url('" + g_image_for_overlay + "')",
-            width: (square_size * 4) + "px",
-            height: (square_size * 4) + "px"
+            backgroundImage: 'url("' + g_image_for_overlay + '")',
+            width: (square_size * 4) + 'px',
+            height: (square_size * 4) + 'px'
         });
-        $("#new-image").css({
-            color: "#999",
-            borderColor: "#e6e6e6"
+        $('#new-image').css({
+            color: '#999',
+            borderColor: '#e6e6e6'
         });
+        Grid();
     }
 
     // shuffles based on num_swaps, or number of swaps
     function Shuffle(square_size, num_swaps) {
         for (var i = 0; i < num_swaps; i++) {
-            var empty_x = parseInt($('#board').children("div:nth-of-type(" + empty_square + ")").css('left'));
-            var empty_y = parseInt($('#board').children("div:nth-of-type(" + empty_square + ")").css('top'));
+            var empty_x = parseInt($('#board').children('div:nth-of-type(' + empty_square + ')').css('left'));
+            var empty_y = parseInt($('#board').children('div:nth-of-type(' + empty_square + ')').css('top'));
 
             // Possible moves are moves where the empty square is next to the one to move, avoiding the risk of an unsolvable shuffle
             var possible_moves = [];
@@ -156,14 +194,32 @@ $(document).ready(function() {
             // random possible move is stored in swap_square and used as the clicked_square
             Move(swap_square, square_size, false);
         }
+        $('#board').removeClass('change');
+        $('#new-image').css({color: '#999', borderColor: '#e6e6e6' });
+        Grid();
+    }
+    // bring back drop-shadow when no longer unscrambled
+    function Grid(){
+            $('#board div').css({
+                "-webkit-box-shadow": "inset 0 0 20px #555555",
+                "box-shadow": "inset 0 0 20px #555555"
+           });
+    }
+
+    function Ungrid(){
+            $('#board div').css({
+                boxShadow: "none",
+                "-webkit-box-shadow": "none",
+                "box-shadow": "none"
+           });
     }
 
     function Move(clicked_square, square_size, do_animate) {
         var movable = false;
 
         // swap the old with the new, just make it so new has x and y for top and bottom of the empty spot
-        var empty_x = parseInt($('#board').children("div:nth-of-type(" + empty_square + ")").css('left'));
-        var empty_y = parseInt($('#board').children("div:nth-of-type(" + empty_square + ")").css('top'));
+        var empty_x = parseInt($('#board').children('div:nth-of-type(' + empty_square + ')').css('left'));
+        var empty_y = parseInt($('#board').children('div:nth-of-type(' + empty_square + ')').css('top'));
 
         var image_x = parseInt($(clicked_square).css('left'));
         var image_y = parseInt($(clicked_square).css('top'));
@@ -199,16 +255,18 @@ $(document).ready(function() {
                 }, 200, function() {
                     // move empty square where image square you just moved was
                     // .css() used to set the left and top CSS properties to the new values
-                    $('#board').children("div:nth-of-type(" + empty_square + ")").css('left', image_x);
-                    $('#board').children("div:nth-of-type(" + empty_square + ")").css('top', image_y);
+                    $('#board').children('div:nth-of-type(' + empty_square + ')').css('left', image_x);
+                    $('#board').children('div:nth-of-type(' + empty_square + ')').css('top', image_y);
                     win(square_size);
                 });
+            // bring back drop-shadow when no longer unscrambled
+            Grid();
+
             } else {
                 $(clicked_square).css('left', empty_x);
                 $(clicked_square).css('top', empty_y);
-
-                $('#board').children("div:nth-of-type(" + empty_square + ")").css('left', image_x);
-                $('#board').children("div:nth-of-type(" + empty_square + ")").css('top', image_y);
+                $('#board').children('div:nth-of-type(' + empty_square + ')').css('left', image_x);
+                $('#board').children('div:nth-of-type(' + empty_square + ')').css('top', image_y);
             }
         }
         var z_index_value = $(clicked_square).css('z-index');
@@ -220,7 +278,6 @@ $(document).ready(function() {
     $(function() {
         // OPEN
         $('[data-popup-open]').on('click', function(e) {
-
             var targeted_popup_class = $(this).attr('data-popup-open');
             $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
 
@@ -238,6 +295,8 @@ $(document).ready(function() {
     });
 
     // initialize game in #game_object div
-    $('#game_object').scrambler(200);
+    $('#game_object').scrambler(100);
 
 });
+
+}(jQuery));

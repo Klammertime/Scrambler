@@ -3,21 +3,20 @@
     margin: 20px auto;
     position: relative;
 }
+
 #board div {
     background-color: #ffffff;
     background-attachment: scroll;
     background-repeat: no-repeat;
     position: absolute;
-    text-align: center;
-    /* CSS3 Shadow */
-    
+    text-align: center; 
     -webkit-box-shadow: inset 0 0 20px #555555;
     box-shadow: inset 0 0 20px #555555;
 }
 
 /* Modal Code */
-/* Outer */
 
+/* Outer */
 .popup {
     width: 100%;
     height: 100%;
@@ -28,8 +27,8 @@
     background: rgba(0, 0, 0, 0.75);
     z-index: 1000;
 }
-/* Inner */
 
+/* Inner */
 .popup-inner {
     padding: 10px;
     position: absolute;
@@ -44,21 +43,23 @@
     background: #fff;
     z-index: 1000;
 }
+
 .popup-inner p a {
-  text-decoration: none;
-  font-size: 12px;
-  cursor: pointer;
-  color: #999;
-  -webkit-transition: border .3s ease-in-out;
-  transition: border .3s ease-in-out;
-  text-transform: uppercase;
-  letter-spacing: .1em;
+	text-decoration: none;
+	font-size: 12px;
+	cursor: pointer;
+	color: #999;
+	-webkit-transition: border .3s ease-in-out;
+	transition: border .3s ease-in-out;
+	text-transform: uppercase;
+	letter-spacing: .1em;
 }
 
-/* the x icon */
+/* x icon */
 .popup-inner a {
     text-decoration: none;
 }
+
 /* Close Button */
 .popup-close {
     width: 30px;
@@ -81,6 +82,7 @@
     line-height: 100%;
     color: #fff;
 }
+
 .popup-close:hover {
     -webkit-transform: translate(50%, -50%) rotate(180deg);
     -ms-transform: translate(50%, -50%);
@@ -88,6 +90,7 @@
     background: rgba(0, 0, 0, 1);
     text-decoration: none;
 }
+
 .image {
     width: 100%;
     height: 700px;
@@ -95,17 +98,18 @@
     max-width: 500px;
     max-height: 500px;
 }
+
 .btns {
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 10px;
     width: 100%;
     line-height: 20px;
     text-align: center;
 }
+
 button {
     background-color: transparent;
     font-size: 10px;
-    margin-top: 10px;
     cursor: pointer;
     color: #999;
     border: 1px solid #e6e6e6;
@@ -117,11 +121,15 @@ button {
     display: inline-block;
     position: relative;
     overflow: hidden;
+    padding: 2px 6px;
+    margin-right: 7px;
 }
+
 label {
     padding: 2px 6px;
     display: block;
 }
+
 button:active {
     background-color: transparent;
     color: #000;
