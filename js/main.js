@@ -51,8 +51,8 @@ $(document).ready(function() {
                 '<button type="button" value="Medium" id="medium"><label>Medium</label></button>' +
                 '<button type="button" value="Hard" id="hard"><label>Hard</label></button>' +
                 '<button type="button" value="Unshuffle" id="unshuffle"><label>Unshuffle</label></button>' +
-                '<button type="button" value="Help" class="btn" data-popup-open="popup-1"><label>Help</label></button>' +
-                '<button type="button" value="Score" class="btn" data-popup-open="score"><label>Score</label></button>' +
+                '<button type="button" value="Help" data-popup-open="popup-1"><label>Help</label></button>' +
+                '<button type="button" value="Score" data-popup-open="score"><label>Score</label></button>' +
                 '<button type="button" value="New_image" id="new-image"><label>New Image</label></button>');
 
 
