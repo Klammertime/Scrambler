@@ -45,14 +45,14 @@
 }
 
 .popup-inner p a {
-	text-decoration: none;
-	font-size: 12px;
-	cursor: pointer;
-	color: #999;
-	-webkit-transition: border .3s ease-in-out;
-	transition: border .3s ease-in-out;
-	text-transform: uppercase;
-	letter-spacing: .1em;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+    color: #999;
+    -webkit-transition: border .3s ease-in-out;
+    transition: border .3s ease-in-out;
+    text-transform: uppercase;
+    letter-spacing: .1em;
 }
 
 /* x icon */
@@ -99,6 +99,12 @@
     max-height: 500px;
 }
 
+.actual-score{
+    width: 250px;
+    height: 200px;
+    padding-top: 65px;
+}
+
 .btns {
     margin-top: 20px;
     margin-bottom: 10px;
@@ -137,12 +143,26 @@ button:active {
 }
 
 #board.change:after {
-	content: '';
-	position: absolute;
-	width: inherit;
-	height: inherit;
-	top: 0;
-	left: 0;
-	background: rgba(242, 120, 75, 0.4); 
-	z-index: 505;
+    content: '';
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    top: 0;
+    left: 0;
+    background: rgba(242, 120, 75, 0.4); 
+    z-index: 505;
+}
+
+.stat-number {
+  color: rgb(242, 120, 75);
+  margin-bottom: 5px;
+  font: normal normal 700 2.5em/1.154 "Lato", "Trebuchet MS", Arial, Calibri, sans-serif;
+  }
+
+  .stat-label {
+  font: normal normal 700 1em/1.125 "Lato", "Trebuchet MS", Arial, Calibri, sans-serif;
+  color: rgb(125, 130, 134);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 30px;
 }
