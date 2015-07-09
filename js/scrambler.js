@@ -4,6 +4,8 @@
 
 
 $(document).ready(function() {
+    var win = $(window);
+    var window_width = $(win).width();
     var zi = 1;
     var the_score = 0;
     var empty_square = 16;
@@ -13,7 +15,6 @@ $(document).ready(function() {
         scrambler:
 
             function(square_size) {
-
             var game_object_element = '#' + $(this).attr('id');
             var sq_size = square_size + 'px';
             var board_size = (square_size * 4) + 'px';
@@ -21,7 +22,9 @@ $(document).ready(function() {
 
             $(game_object_element).css({
                 height: board_size,
-                width: board_size
+                width: board_size,
+                margin: "0 auto",
+                position: "relative"
             });
 
             $(game_object_element).html('<div id="board"></div>');
@@ -30,7 +33,7 @@ $(document).ready(function() {
                 height: sq_size,
                 width: sq_size,
                 lineHeight: sq_size,
-                backgroundSize: board_with_padding + ' ' + board_with_padding
+                backgroundSize: board_with_padding + ' ' + board_with_padding,
             });
 
             $('#board').css({
@@ -47,14 +50,12 @@ $(document).ready(function() {
             }
 
             $(game_object_element).before('<section class="btns"></section>');
-            $('.btns').append('<button type="button" value="Easy" id="easy"><label>Easy</label></button>' +
-                '<button type="button" value="Medium" id="medium"><label>Medium</label></button>' +
-                '<button type="button" value="Hard" id="hard"><label>Hard</label></button>' +
-                '<button type="button" value="Unshuffle" id="unshuffle"><label>Unshuffle</label></button>' +
-                '<button type="button" value="Help" data-popup-open="popup-1"><label>Help</label></button>' +
-                '<button type="button" value="Score" data-popup-open="score"><label>Score</label></button>' +
-                '<button type="button" value="New_image" id="new-image"><label>New Image</label></button>');
-
+            $('.btns').append('<button value="Easy" id="easy" class="first btn"><label>Easy</label></button>' +
+                '<button value="Medium" id="medium" class="btn"><label>Medium</label></button>' +
+                '<button value="Hard" id="hard" class="btn"><label>Hard</label></button>' +
+                '<button value="New_image" id="new-image" class="icon"><span class="icon-camera"></span></button>' +
+                '<button value="Help" data-popup-open="popup-1" class="icon"><span class="icon-image"></span></button>' +
+                '<button value="Unshuffle" id="unshuffle" class="icon"><span class="icon-spinner11"></span></button>');
 
 
             $('[data-popup-open]').after('<div class="popup" data-popup="popup-1"></div');
@@ -75,6 +76,8 @@ $(document).ready(function() {
                 background: '#ffffff'
             });
 
+            Grid();
+
             // Attach a click event to each of the squares, or divs.
             $('#board').children('div').click(function() {
                 Slide(this, square_size, true);
@@ -85,7 +88,7 @@ $(document).ready(function() {
             });
 
             $('#medium').click(function() {
-                Shuffle(square_size, 15);
+                Shuffle(square_size, 25);
             });
 
             $('#hard').click(function() {
@@ -103,7 +106,6 @@ $(document).ready(function() {
             $('button[data-popup-open="score"]').click(function() {
                 currentScore(the_score);
             });
-
         }
     });
 
@@ -164,7 +166,6 @@ $(document).ready(function() {
 
     function getImages(square_size) {
         var image_index = Math.floor(Math.random() * 700);
-        var bg_size = (square_size * 4 + 'px') + ' ' + (square_size * 4 + 'px');
         image_for_overlay = 'https://unsplash.it/' + (square_size * 4) + '/' + (square_size * 4) + '?image=' + image_index;
         $('#board').children('div').css({
             backgroundImage: 'url("' + image_for_overlay + '")'
@@ -320,8 +321,13 @@ $(document).ready(function() {
         });
     });
 
-    // initialize game in #game_object div
-    $('#game_object').scrambler(100);
+if (window_width < 520) {
+    $('#scrambler').scrambler(80);
+} if ((window_width > 520) && (window_width < 800)){
+    $('#scrambler').scrambler(130); 
+} if (window_width > 800){
+    $('#scrambler').scrambler(150); 
+}
 
 });
 

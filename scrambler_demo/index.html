@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Scrambler</title>
+    <!-- Styles -->
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/scrambler.css">
+    <!-- Scripts -->
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/scrambler.js"></script>
+
+  </head>
+  <body> 
+    <header id="top" class="main-header">
+      <span class="main-title">jQuery plugin transforming Unsplash images into puzzles</span>
+      <h1 class="main-heading">Scrambler</h1>
+      <img class="arrow" src="img/arrow.svg" alt="Down arrow">
+
+    </header>
+    
+
+    <div class="primary-content">
+          <div class="scramblerContainer">
+          <div id="scrambler"></div>
+        </div>
+      <p class="intro t-border">
+        This jQuery plugin uses random Unsplash images to create a sliding image puzzle, Scrambler. You can specify square size and add it to any element, class or ID on your site. The plugin sources Unsplash images using Unsplash.it.
+      </p>
+      <a class="callout" href="https://github.com/Klammertime/Unscrambler">Download on Github</a>
+      
+      <div class="full-img-bg">
+        <h2>Unsplash</h2>
+        <p>
+           Unsplash is a side project created by Crew, a Montreal-based online marketplace for creative talent. They provide free "do whatever you want" high-resolution photos.
+        </p>
+      </div>
+      
+      <a class="callout" href="https://unsplash.com/">Check out Unsplash</a>
+    </div><!-- End .primary-content -->
+
+
+
+    <div class="secondary-content t-border group">
+      
+      <div class="half-section-left">
+        <img src="img/mtn-landscape.jpg" alt="Mountain Landscape">
+        <h3>Using Scrambler</h3>
+        <p>
+          <pre>Step 1. Find the scrambler.js file.&#x0000A;&#x0000A;Step 2. Insert the ID you want your puzzle to show up in and square size into this line:&#x0000A;&#x0000A;$('#scrambler').unscrambler(80);&#x0000A;&#x0000A;Step 3. Choose different square sizes based on your media queries.</pre>
+        </p>
+
+      </div>
+
+      <div class="half-section-right">
+        <img src="img/resort.jpg" alt="Resort">
+        <h3>Check out Unsplash It</h3>
+        <p>
+          <a href="https://unsplash.it/">Unsplash It</a> provides beautiful placeholder images from unsplash, including:
+        </p>
+        <ol>
+          <li>A random image url</li>
+          <li>JSON data</li>
+          <li>Specific images and more</li>
+        </ol>
+      </div>
+    </div><!-- End .secondary-content -->
+    
+    <footer class="main-footer">
+      <p>Created by <a href="https://github.com/Klammertime">Audrey Klammer</a></p>
+      <a href="#top">Back to top &raquo;</a>
+    </footer>
+  </body>
+</html>
