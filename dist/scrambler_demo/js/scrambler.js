@@ -1,24 +1,24 @@
-
+// notes: finish switching to camelCase
 
 ;(function($) {
 
 
 $(document).ready(function() {
-    var win = $(window);
-    var window_width = $(win).width();
-    var zi = 1;
-    var the_score = 0;
-    var empty_square = 16;
-    var square_size, image_for_overlay;
+    var squareSize, imageForOverlay,
+        win = $(window),
+        window_width = $(win).width(),
+        zi = 1,
+        the_score = 0,
+        empty_square = 16;
 
     $.fn.extend({
         scrambler:
 
-            function(square_size) {
+            function(squareSize) {
             var game_object_element = '#' + $(this).attr('id');
-            var sq_size = square_size + 'px';
-            var board_size = (square_size * 4) + 'px';
-            var board_with_padding = (square_size * 4) + 5 + 'px';
+            var sq_size = squareSize + 'px';
+            var board_size = (squareSize * 4) + 'px';
+            var board_with_padding = (squareSize * 4) + 5 + 'px';
 
             $(game_object_element).css({
                 height: board_size,
@@ -44,19 +44,35 @@ $(document).ready(function() {
             });
 
             for (var i = 0; i < 16; i++) {
-                $('#board').append('<div style="left:' + Left(i, square_size) + 'px; top: ' + Top(i, square_size) + 
-                    'px; width: ' + square_size + 'px; height: ' + square_size + 'px; background-position: ' + (-(i % 4) * square_size) + 
-                    'px ' + -Math.floor(i / 4) * square_size + 'px; "></div>');
+                $('#board').append('<div style="left:' + Left(i, squareSize) + 'px; top: ' + Top(i, squareSize) + 
+                    'px; width: ' + squareSize + 'px; height: ' + squareSize + 'px; background-position: ' + (-(i % 4) * squareSize) + 
+                    'px ' + -Math.floor(i / 4) * squareSize + 'px; "></div>');
             }
 
-            $(game_object_element).before('<section class="btns"></section>');
-            $('.btns').append('<button value="Easy" id="easy" class="first btn"><label>Easy</label></button>' +
+            $('#board').before('<section class="btns"><div class="scrambler-controls"></div></section>');
+            $('.scrambler-controls').append('<button value="Easy" id="easy" class="first btn"><label>Easy</label></button>' +
                 '<button value="Medium" id="medium" class="btn"><label>Medium</label></button>' +
                 '<button value="Hard" id="hard" class="btn"><label>Hard</label></button>' +
                 '<button value="New_image" id="new-image" class="icon"><span class="icon-camera"></span></button>' +
                 '<button value="Help" data-popup-open="popup-1" class="icon"><span class="icon-image"></span></button>' +
                 '<button value="Unshuffle" id="unshuffle" class="icon"><span class="icon-spinner11"></span></button>');
 
+            $('.btns').css({
+                width: board_size
+            });
+
+            $('.scrambler-controls').css({
+                margin: '0 auto'
+
+            });
+
+            $('.btn').css({
+                width: '20%'
+            });
+
+            $('.icon').css({
+                width: '5%'
+            });
 
             $('[data-popup-open]').after('<div class="popup" data-popup="popup-1"></div');
             $('.popup').html('<div class="popup-inner"></div>');
@@ -68,7 +84,7 @@ $(document).ready(function() {
             $('.score-inner').append('<div class="actual-score"><div class="score-container"></div></div><p><a data-popup-close="score" href="#">Close</a></p>' +
                 '<a class="popup-close" data-popup-close="score" href="#">x</a>');
 
-            getImages(square_size);
+            getImages(squareSize);
 
             // Emptys the 16th square.
             $('#board').children('div:nth-of-type(' + empty_square + ')').css({
@@ -80,27 +96,27 @@ $(document).ready(function() {
 
             // Attach a click event to each of the squares, or divs.
             $('#board').children('div').click(function() {
-                Slide(this, square_size, true);
+                Slide(this, squareSize, true);
             });
 
             $('#easy').click(function() {
-                Shuffle(square_size, 6);
+                Shuffle(squareSize, 6);
             });
 
             $('#medium').click(function() {
-                Shuffle(square_size, 25);
+                Shuffle(squareSize, 25);
             });
 
             $('#hard').click(function() {
-                Shuffle(square_size, 200);
+                Shuffle(squareSize, 200);
             });
 
             $('#new-image').click(function() {
-                getImages(square_size);
+                getImages(squareSize);
             });
 
             $('#unshuffle').click(function() {
-                unShuffle(square_size);
+                unShuffle(squareSize);
             });
 
             $('button[data-popup-open="score"]').click(function() {
@@ -109,10 +125,10 @@ $(document).ready(function() {
         }
     });
 
-    function unShuffle(square_size) {
+    function unShuffle(squareSize) {
         for (var i = 1; i <= 16; i++) {
-            var left = (((i - 1) % 4) * square_size) + 'px';
-            var top = Math.floor((i - 1) / 4) * square_size + 'px';
+            var left = (((i - 1) % 4) * squareSize) + 'px';
+            var top = Math.floor((i - 1) / 4) * squareSize + 'px';
             $('#board div:nth-of-type(' + i + ')').css({
                 left: left,
                 top: top
@@ -120,18 +136,18 @@ $(document).ready(function() {
         }
     }
 
-    function Top(i, square_size){
-        return Math.floor(i / 4) * square_size;
+    function Top(i, squareSize){
+        return Math.floor(i / 4) * squareSize;
     }
 
-    function Left(i, square_size){
-        return ((i % 4) * square_size);
+    function Left(i, squareSize){
+        return ((i % 4) * squareSize);
     }
 
-    function Win(square_size) {
+    function Win(squareSize) {
         for (var i = 1; i <= 16; i++) {
-            var left = (((i - 1) % 4) * square_size);
-            var top = Math.floor((i - 1) / 4) * square_size;
+            var left = (((i - 1) % 4) * squareSize);
+            var top = Math.floor((i - 1) / 4) * squareSize;
             var win_left = parseInt($('#board div:nth-of-type(' + i + ')').css('left'));
             var win_top = parseInt($('#board div:nth-of-type(' + i + ')').css('top'));
             if (win_left != left || win_top != top) {
@@ -164,20 +180,20 @@ $(document).ready(function() {
         });
     }
 
-    function getImages(square_size) {
+    function getImages(squareSize) {
         var image_index = Math.floor(Math.random() * 700);
-        image_for_overlay = 'https://unsplash.it/' + (square_size * 4) + '/' + (square_size * 4) + '?image=' + image_index;
+        imageForOverlay = 'https://unsplash.it/' + (squareSize * 4) + '/' + (squareSize * 4) + '?image=' + image_index;
         $('#board').children('div').css({
-            backgroundImage: 'url("' + image_for_overlay + '")'
+            backgroundImage: 'url("' + imageForOverlay + '")'
         });
         $('#board').children('div:nth-of-type(' + empty_square + ')').css({
             backgroundImage: '',
             background: '#ffffff'
         });
         $('.image').css({
-            backgroundImage: 'url("' + image_for_overlay + '")',
-            width: (square_size * 4) + 'px',
-            height: (square_size * 4) + 'px'
+            backgroundImage: 'url("' + imageForOverlay + '")',
+            width: (squareSize * 4) + 'px',
+            height: (squareSize * 4) + 'px'
         });
         $('#new-image').css({
             color: '#999',
@@ -210,7 +226,7 @@ $(document).ready(function() {
     }
 
     // shuffles based on number of swaps
-    function Shuffle(square_size, num_swaps) {
+    function Shuffle(squareSize, num_swaps) {
         for (var i = 0; i < num_swaps; i++) {
             var empty_x = getEmptyX(empty_square);
             var empty_y = getEmptyY(empty_square);
@@ -222,7 +238,7 @@ $(document).ready(function() {
                 var image_y = getImageY(clicked_square);
 
                 // If there is only a 175px dif, or the next square up or down, its a possible move
-                if (isPossibleMove(empty_x, image_x, empty_y, image_y, square_size)) {
+                if (isPossibleMove(empty_x, image_x, empty_y, image_y, squareSize)) {
                     possible_moves.push(clicked_square);
                 }
             });
@@ -230,7 +246,7 @@ $(document).ready(function() {
             var rand_index = Math.floor(Math.random() * possible_moves.length);
             var swap_square = possible_moves[rand_index];
             // random possible move is stored in swap_square and used as the clicked_square
-            Slide(swap_square, square_size, false);
+            Slide(swap_square, squareSize, false);
         }
         $('#board').removeClass('change');
         $('#new-image').css({color: '#999', borderColor: '#e6e6e6' });
@@ -252,17 +268,17 @@ $(document).ready(function() {
            });
     }
 
-    function isPossibleMove(empty_x, image_x, empty_y, image_y, square_size){
-        if (empty_x == image_x && (empty_y - square_size == image_y || empty_y + square_size == image_y)) {
+    function isPossibleMove(empty_x, image_x, empty_y, image_y, squareSize){
+        if (empty_x == image_x && (empty_y - squareSize == image_y || empty_y + squareSize == image_y)) {
             return true;
         }
         // If there is only a 175px dif, or the next square right or left, its a possible move
-        if (empty_y == image_y && (empty_x - square_size == image_x || empty_x + square_size == image_x)) {
+        else if (empty_y == image_y && (empty_x - squareSize == image_x || empty_x + squareSize == image_x)) {
             return true;
         }
     }
 
-    function Slide(clicked_square, square_size, do_animate) {
+    function Slide(clicked_square, squareSize, do_animate) {
 
         // swap the old with the new, just make it so new has x and y for top and bottom of the empty spot
         var empty_x = getEmptyX(empty_square);
@@ -273,7 +289,7 @@ $(document).ready(function() {
 
 
         // if true, activate this if statement, first increments z-index, then move the image into the white square.
-        if (isPossibleMove(empty_x, image_x, empty_y, image_y, square_size)) {
+        if (isPossibleMove(empty_x, image_x, empty_y, image_y, squareSize)) {
             // increment z-index up from 1 so that new tile is on top of others
             $(clicked_square).css('z-index', zi++);
 
@@ -286,7 +302,7 @@ $(document).ready(function() {
                     // move empty square where image square you just moved was
                     $('#board').children('div:nth-of-type(' + empty_square + ')').css('left', image_x);
                     $('#board').children('div:nth-of-type(' + empty_square + ')').css('top', image_y);
-                    Win(square_size);
+                    Win(squareSize);
                 });
             // bring back drop-shadow when no longer unscrambled
             Grid();
@@ -323,9 +339,9 @@ $(document).ready(function() {
 
 if (window_width < 520) {
     $('#scrambler').scrambler(80);
-} if ((window_width > 520) && (window_width < 800)){
+} else if ((window_width > 520) && (window_width < 800)){
     $('#scrambler').scrambler(130); 
-} if (window_width > 800){
+} else if (window_width > 800){
     $('#scrambler').scrambler(150); 
 }
 
