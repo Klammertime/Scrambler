@@ -176,20 +176,33 @@ button.scramblerIcon {
 
 @media (max-width: 640px) {
 
-    .scramblerBtn + .scramblerBtn {
-        margin-left: 5px;
+.scramblerBtn + .scramblerBtn {
+        margin-left: 0px;
     }
 
+    .scramblerIcon + .scramblerIcon {
+        margin-left: 10px;
+    }
 
-    button.scramblerBtn, button.scramblerIcon {
+  button.scramblerIcon {
         display: inline-block;
-        position: relative;
         overflow: hidden;
-        margin-right: 5px;
-    }
+        margin-top: 10px;
+      }
 
     .scramblerBtn label {
-        padding: 2px 4px;
+        padding: 10px 10px;
+    }
+
+    button.scramblerBtn{
+        margin-bottom: 5px;
+        width: 100%;
+    }
+
+    .scramblerIcon .icon-image, 
+    .scramblerIcon .icon-spinner11, 
+    .scramblerIcon .icon-camera {
+    font-size: 26px;
     }
 
 }
