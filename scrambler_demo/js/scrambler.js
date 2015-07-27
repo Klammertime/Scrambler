@@ -49,18 +49,18 @@ $(document).ready(function() {
                     'px ' + -Math.floor(i / 4) * square_size + 'px; "></div>');
             }
 
-            $(game_object_element).before('<section class="btns"></section>');
-            $('.btns').append('<button value="Easy" id="easy" class="first btn"><label>Easy</label></button>' +
-                '<button value="Medium" id="medium" class="btn"><label>Medium</label></button>' +
-                '<button value="Hard" id="hard" class="btn"><label>Hard</label></button>' +
-                '<button value="New_image" id="new-image" class="icon"><span class="icon-camera"></span></button>' +
-                '<button value="Help" data-popup-open="popup-1" class="icon"><span class="icon-image"></span></button>' +
-                '<button value="Unshuffle" id="unshuffle" class="icon"><span class="icon-spinner11"></span></button>');
+            $(game_object_element).before('<section class="scramblerBtns"></section>');
+            $('.scramblerBtns').append('<button value="Easy" id="easy" class="scramblerBtn"><label>Easy</label></button>' +
+                '<button value="Medium" id="medium" class="scramblerBtn"><label>Medium</label></button>' +
+                '<button value="Hard" id="hard" class="scramblerBtn"><label>Hard</label></button>' +
+                '<button value="New_image" id="new-image" class="scramblerIcon"><span class="icon-camera"></span></button>' +
+                '<button value="Help" data-popup-open="popup-1" class="scramblerIcon"><span class="icon-image"></span></button>' +
+                '<button value="Unshuffle" id="unshuffle" class="scramblerIcon"><span class="icon-spinner11"></span></button>');
 
 
             $('[data-popup-open]').after('<div class="popup" data-popup="popup-1"></div');
             $('.popup').html('<div class="popup-inner"></div>');
-            $('.popup-inner').append('<p class="image"></p><p><a data-popup-close="popup-1" href="#">Close</a></p>' +
+            $('.popup-inner').append('<p class="scramblerImage"></p><p><a data-popup-close="popup-1" href="#">Close</a></p>' +
                 '<a class="popup-close" data-popup-close="popup-1" href="#">x</a>');
 
             $('button[data-popup-open="score"]').after('<div class="score popup" data-popup="score"></div');
@@ -160,7 +160,6 @@ $(document).ready(function() {
                     borderColor: '#e6e6e6'
                 });
             });
-
         });
     }
 
@@ -174,7 +173,7 @@ $(document).ready(function() {
             backgroundImage: '',
             background: '#ffffff'
         });
-        $('.image').css({
+        $('.scramblerImage').css({
             backgroundImage: 'url("' + image_for_overlay + '")',
             width: (square_size * 4) + 'px',
             height: (square_size * 4) + 'px'
@@ -187,7 +186,6 @@ $(document).ready(function() {
     }
 
     function currentScore(the_score){
-        
         $('.score-container').remove();
         $('.actual-score').append('<div class="score-container"><p class="stat-number">' + the_score + 
             '</p><p class="stat-label">Scramblers Solved</p></div>');
@@ -322,7 +320,7 @@ $(document).ready(function() {
     });
 
 if (window_width < 520) {
-    $('#scrambler').scrambler(80);
+    $('#scrambler').scrambler(70);
 } if ((window_width > 520) && (window_width < 800)){
     $('#scrambler').scrambler(130); 
 } if (window_width > 800){

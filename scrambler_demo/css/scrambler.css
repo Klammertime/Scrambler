@@ -1,4 +1,3 @@
-
 @import url("../fonts/icomoon/style.css");
 
 #board div {
@@ -85,7 +84,7 @@
     text-decoration: none;
 }
 
-.image {
+.scramblerImage {
     width: 100%;
     height: 700px;
     background-size: cover;
@@ -93,7 +92,7 @@
     max-height: 500px;
 }
 
-.actual-score{
+.actual-score {
     width: 250px;
     height: 200px;
     padding-top: 65px;
@@ -101,14 +100,18 @@
 
 /* Button Code */
 
-.btns {
+.scramblerBtns {
     margin-bottom: 10px;
     width: 100%;
     text-align: center;
     margin-left: 8px;
 }
 
-button {
+.scramblerBtn + .scramblerBtn  {
+    margin-left: 14px;
+}
+
+button.scramblerBtn, button.scramblerIcon {
     background-color: transparent;
     cursor: pointer;
     border: 1px solid #e6e6e6;
@@ -121,29 +124,30 @@ button {
     margin-right: 14px;
 }
 
-.icon {
+button.scramblerIcon {
     border: none;
 }
 
-.icon-image, .icon-spinner11, .icon-camera {
-font-size: 16px;
-  display: inline-block;
+.scramblerIcon .icon-image, 
+.scramblerIcon .icon-spinner11, 
+.scramblerIcon .icon-camera {
+    font-size: 16px;
+    display: inline-block;
     color: #9A9A9A;
     line-height: 1;
     vertical-align: text-top;
 }
 
-label {
-    padding: 2px 4px;
+.scramblerBtn label {
+    padding: 2px 20px;
     display: block;
     cursor: pointer; 
-     color: #9A9A9A;
+    color: #9A9A9A;
     text-transform: uppercase;
     letter-spacing: .1em;
     font-size: 10px;
     line-height: 10px;
 }
-
 
 #board.change:after {
     content: '';
@@ -157,25 +161,35 @@ label {
 }
 
 .stat-number {
-  color: rgb(242, 120, 75);
-  margin-bottom: 5px;
-  font: normal normal 700 2.5em/1.154 "Lato", "Trebuchet MS", Arial, Calibri, sans-serif;
-  }
-
-  .stat-label {
-  font: normal normal 700 1em/1.125 "Lato", "Trebuchet MS", Arial, Calibri, sans-serif;
-  color: rgb(125, 130, 134);
-  text-transform: uppercase;
-  text-align: center;
-  margin-bottom: 30px;
+    color: rgb(242, 120, 75);
+    margin-bottom: 5px;
+    font: normal normal 700 2.5em/1.154 "Lato", "Trebuchet MS", Arial, Calibri, sans-serif;
 }
 
+.stat-label {
+    font: normal normal 700 1em/1.125 "Lato", "Trebuchet MS", Arial, Calibri, sans-serif;
+    color: rgb(125, 130, 134);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 30px;
+}
 
 @media (max-width: 640px) {
 
-    button {
-        margin-right: 8px;
+    .scramblerBtn + .scramblerBtn {
+        margin-left: 5px;
+    }
+
+
+    button.scramblerBtn, button.scramblerIcon {
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+        margin-right: 5px;
+    }
+
+    .scramblerBtn label {
+        padding: 2px 4px;
     }
 
 }
-

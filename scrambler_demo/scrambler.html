@@ -3,7 +3,7 @@
   <head>
     <title>Scrambler</title>
     <!-- Styles -->
-    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/scrambler.css">
     <!-- Scripts -->
@@ -40,19 +40,30 @@
     </div><!-- End .primary-content -->
 
 
-
+<!-- <div class="bottom-section"> -->
     <div class="secondary-content t-border group">
       
-      <div class="half-section-left">
-        <img src="img/mtn-landscape.jpg" alt="Mountain Landscape">
-        <h3>Using Scrambler</h3>
-        <p>
-          <pre>Step 1. Find the scrambler.js file.&#x0000A;&#x0000A;Step 2. Insert the ID you want your puzzle to show up in and square size into this line:&#x0000A;&#x0000A;$('#scrambler').unscrambler(80);&#x0000A;&#x0000A;Step 3. Choose different square sizes based on your media queries.</pre>
+      <div class="full-section">
+        <h3>How to use Scrambler</h3>
+        <ol>
+          <li>Find the scrambler.js file.</li>
+          <li>Insert the ID you want your puzzle to show up in and square size into this line:<pre>$('#scrambler').scrambler(80);</pre></li>
+          <li>Choose different square sizes based on your media queries:
+          <pre>
+if (window_width < 520) {
+  $('#scrambler').scrambler(80);
+} if ((window_width > 520) && (window_width < 800)){
+  $('#scrambler').scrambler(130); 
+} if (window_width > 800){
+  $('#scrambler').scrambler(150); 
+}
+</pre>
+          </li>
         </p>
 
       </div>
 
-      <div class="half-section-right">
+<!--       <div class="half-section-right">
         <img src="img/resort.jpg" alt="Resort">
         <h3>Check out Unsplash It</h3>
         <p>
@@ -63,12 +74,13 @@
           <li>JSON data</li>
           <li>Specific images and more</li>
         </ol>
-      </div>
+      </div> -->
     </div><!-- End .secondary-content -->
     
-    <footer class="main-footer">
+    <footer class="main-footer bottom-section">
       <p>Created by <a href="https://github.com/Klammertime">Audrey Klammer</a></p>
       <a href="#top">Back to top &raquo;</a>
     </footer>
+
   </body>
 </html>
