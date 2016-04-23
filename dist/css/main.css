@@ -1,0 +1,175 @@
+#game_object {
+    position: relative;
+    margin: 20px auto;
+    background-color: #fff;
+}
+
+#board div {
+    position: absolute;
+    text-align: center;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    -webkit-box-shadow: inset 0 0 20px #555;
+    box-shadow: inset 0 0 20px #555;
+}
+
+/* Modal Code */
+
+
+/* Outer */
+
+.popup {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+/* Inner */
+
+.popup-inner {
+    position: absolute;
+    z-index: 1000;
+    top: 50%;
+    left: 50%;
+    padding: 10px;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border-radius: 3px;
+    background: #fff;
+    -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 1);
+}
+
+.popup-inner p a {
+    font-size: 12px;
+    cursor: pointer;
+    -webkit-transition: border 0.3s ease-in-out;
+    transition: border 0.3s ease-in-out;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #999;
+}
+
+
+/* x icon */
+
+.popup-inner a {
+    text-decoration: none;
+}
+
+
+/* Close Button */
+
+.popup-close {
+    font-family: Arial, Sans-Serif;
+    font-size: 20px;
+    line-height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    padding-top: 4px;
+    -webkit-transition: ease 0.25s all;
+    transition: ease 0.25s all;
+    -webkit-transform: translate(50%, -50%);
+    -ms-transform: translate(50%, -50%);
+    transform: translate(50%, -50%);
+    text-align: center;
+    color: #fff;
+    border-radius: 1000px;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.popup-close:hover {
+    -webkit-transform: translate(50%, -50%) rotate(180deg);
+    -ms-transform: translate(50%, -50%);
+    transform: translate(50%, -50%) rotate(180deg);
+    text-decoration: none;
+    background: rgba(0, 0, 0, 1);
+}
+
+.image {
+    width: 100%;
+    max-width: 500px;
+    height: 1000px;
+    max-height: 500px;
+    background-size: cover;
+}
+
+.actual-score {
+    width: 250px;
+    height: 200px;
+    padding-top: 65px;
+}
+
+.btns {
+    line-height: 20px;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+input {
+    font-size: 10px;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    margin-right: 7px;
+    padding: 5px 10px;
+    cursor: pointer;
+    -webkit-transition: border 0.3s ease-in-out;
+    transition: border 0.3s ease-in-out;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888787;
+    border: 1px solid #B1B0B0;
+    border-radius: 3px;
+    background-color: transparent;
+}
+
+label {
+    display: block;
+    padding: 2px 6px;
+}
+
+button:active {
+    color: #000;
+    border-color: #000;
+    background-color: transparent;
+}
+
+#board.change:after {
+    position: absolute;
+    z-index: 505;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: inherit;
+    content: '';
+    background: rgba(242, 120, 75, 0.4);
+}
+
+.stat-number {
+    font: normal normal 700 2.5em/1.154 'Lato', 'Trebuchet MS', Arial, Calibri, sans-serif;
+    margin-bottom: 5px;
+    color: rgb(242, 120, 75);
+}
+
+.stat-label {
+    font: normal normal 700 1em/1.125 'Lato', 'Trebuchet MS', Arial, Calibri, sans-serif;
+    margin-bottom: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    color: rgb(125, 130, 134);
+}
