@@ -1,6 +1,0 @@
-/*  CSS snippet for importing web font formats  */
-
-  src: url('../fonts/abolition-regular-webfont.eot');
-  src: url('../fonts/abolition-regular-webfont.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/abolition-regular-webfont.woff') format('woff'),
-       url('../fonts/abolition-regular-webfont.ttf') format('truetype');
