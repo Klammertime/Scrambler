@@ -7,8 +7,7 @@
             EMPTY_SQUARE = 16;
 
         $.fn.extend({
-            scrambler:
-                function(squareSize) {
+            scrambler: function(squareSize) {
 
                 var gameObjectElement = '#' + $(this).attr('id'),
                     boardWithPadding = (squareSize * 4) + 5 + 'px';
@@ -194,27 +193,31 @@
             return parseInt($(clickedSquare).css('top'));
         }
 
-        // shuffles based on number of swaps
+        // Empty square next to the one to move,
+        function generatePossibleMoves(emptyX, emptyY, squareSize) {
+            var possibleMoves = [];
+            $('#board').children('div').each(function(index, clickedSquare) {
+                var imageX = getImageX(clickedSquare),
+                    imageY = getImageY(clickedSquare);
+                // If there is only a 175px dif, or the next square up or down, its a possible move
+                if (isPossibleMove(emptyX, imageX, emptyY, imageY, squareSize)) {
+                    possibleMoves.push(clickedSquare);
+                }
+            });
+            return possibleMoves;
+        }
+
+
+        // Shuffles based on number of swaps
         function Shuffle(squareSize, numSwaps) {
             for (var i = 0, j = numSwaps; i < j; i++) {
                 var randomIndex,
                     swapSquare,
-                    // Possible moves are moves where the empty square is next to the one to move,
-                    // avoiding the risk of an unsolvable shuffle
-                    possibleMoves = [],
+                    possibleMoves,
                     emptyX = getEmptyX(EMPTY_SQUARE),
                     emptyY = getEmptyY(EMPTY_SQUARE);
 
-                $('#board').children('div').each(function(index, clickedSquare) {
-                    var imageX = getImageX(clickedSquare),
-                        imageY = getImageY(clickedSquare);
-
-                    // If there is only a 175px dif, or the next square up or down, its a possible move
-                    if (isPossibleMove(emptyX, imageX, emptyY, imageY, squareSize)) {
-                        possibleMoves.push(clickedSquare);
-                    }
-                });
-
+                possibleMoves = generatePossibleMoves(emptyX, emptyY, squareSize);
                 randomIndex = Math.floor(Math.random() * possibleMoves.length);
                 swapSquare = possibleMoves[randomIndex];
                 // random possible move is stored in swapSquare and used as the clickedSquare
