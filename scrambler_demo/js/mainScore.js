@@ -4,8 +4,6 @@
 
 
 $(document).ready(function() {
-    var win = $(window);
-    var window_width = $(win).width();
     var zi = 1;
     var the_score = 0;
     var empty_square = 16;
@@ -15,6 +13,7 @@ $(document).ready(function() {
         scrambler:
 
             function(square_size) {
+
             var game_object_element = '#' + $(this).attr('id');
             var sq_size = square_size + 'px';
             var board_size = (square_size * 4) + 'px';
@@ -22,9 +21,7 @@ $(document).ready(function() {
 
             $(game_object_element).css({
                 height: board_size,
-                width: board_size,
-                margin: "0 auto",
-                position: "relative"
+                width: board_size
             });
 
             $(game_object_element).html('<div id="board"></div>');
@@ -33,7 +30,7 @@ $(document).ready(function() {
                 height: sq_size,
                 width: sq_size,
                 lineHeight: sq_size,
-                backgroundSize: board_with_padding + ' ' + board_with_padding,
+                backgroundSize: board_with_padding + ' ' + board_with_padding
             });
 
             $('#board').css({
@@ -44,23 +41,24 @@ $(document).ready(function() {
             });
 
             for (var i = 0; i < 16; i++) {
-                $('#board').append('<div style="left:' + Left(i, square_size) + 'px; top: ' + Top(i, square_size) + 
-                    'px; width: ' + square_size + 'px; height: ' + square_size + 'px; background-position: ' + (-(i % 4) * square_size) + 
+                $('#board').append('<div style="left:' + Left(i, square_size) + 'px; top: ' + Top(i, square_size) +
+                    'px; width: ' + square_size + 'px; height: ' + square_size + 'px; background-position: ' + (-(i % 4) * square_size) +
                     'px ' + -Math.floor(i / 4) * square_size + 'px; "></div>');
             }
 
-            $(game_object_element).before('<section class="scramblerBtns"></section>');
-            $('.scramblerBtns').append('<button value="Easy" id="easy" class="scramblerBtn"><label>Easy</label></button>' +
-                '<button value="Medium" id="medium" class="scramblerBtn"><label>Medium</label></button>' +
-                '<button value="Hard" id="hard" class="scramblerBtn"><label>Hard</label></button>' +
-                '<button value="New_image" id="new-image" class="scramblerIcon"><span class="icon-camera"></span></button>' +
-                '<button value="Help" data-popup-open="popup-1" class="scramblerIcon"><span class="icon-image"></span></button>' +
-                '<button value="Unshuffle" id="unshuffle" class="scramblerIcon"><span class="icon-spinner11"></span></button>');
+            $(game_object_element).before('<section class="btns"></section>');
+            $('.btns').append('<input type="button" value="Easy" id="easy"></input>' +
+                '<input type="button" value="Hard" id="hard"></input>' +
+                '<input type="button" value="Unshuffle" id="unshuffle"></input>' +
+                '<input type="button" value="Help" data-popup-open="popup-1"></input>' +
+                '<input type="button" value="Score" data-popup-open="score"></input>' +
+                '<input type="button" value="New Image" id="new-image"></input>');
+
 
 
             $('[data-popup-open]').after('<div class="popup" data-popup="popup-1"></div');
             $('.popup').html('<div class="popup-inner"></div>');
-            $('.popup-inner').append('<p class="scramblerImage"></p><p><a data-popup-close="popup-1" href="#">Close</a></p>' +
+            $('.popup-inner').append('<p class="image"></p><p><a data-popup-close="popup-1" href="#">Close</a></p>' +
                 '<a class="popup-close" data-popup-close="popup-1" href="#">x</a>');
 
             $('button[data-popup-open="score"]').after('<div class="score popup" data-popup="score"></div');
@@ -76,19 +74,13 @@ $(document).ready(function() {
                 background: '#ffffff'
             });
 
-            Grid();
-
             // Attach a click event to each of the squares, or divs.
             $('#board').children('div').click(function() {
                 Slide(this, square_size, true);
             });
 
             $('#easy').click(function() {
-                Shuffle(square_size, 6);
-            });
-
-            $('#medium').click(function() {
-                Shuffle(square_size, 25);
+                Shuffle(square_size, 15);
             });
 
             $('#hard').click(function() {
@@ -106,6 +98,7 @@ $(document).ready(function() {
             $('button[data-popup-open="score"]').click(function() {
                 currentScore(the_score);
             });
+
         }
     });
 
@@ -141,7 +134,7 @@ $(document).ready(function() {
             });
                 return false;
             }
-        }  
+        }
             $('#board').animate({
 
             }, 500, function() {
@@ -160,11 +153,13 @@ $(document).ready(function() {
                     borderColor: '#e6e6e6'
                 });
             });
+
         });
     }
 
     function getImages(square_size) {
         var image_index = Math.floor(Math.random() * 700);
+        var bg_size = (square_size * 4 + 'px') + ' ' + (square_size * 4 + 'px');
         image_for_overlay = 'https://unsplash.it/' + (square_size * 4) + '/' + (square_size * 4) + '?image=' + image_index;
         $('#board').children('div').css({
             backgroundImage: 'url("' + image_for_overlay + '")'
@@ -173,7 +168,7 @@ $(document).ready(function() {
             backgroundImage: '',
             background: '#ffffff'
         });
-        $('.scramblerImage').css({
+        $('.image').css({
             backgroundImage: 'url("' + image_for_overlay + '")',
             width: (square_size * 4) + 'px',
             height: (square_size * 4) + 'px'
@@ -186,8 +181,9 @@ $(document).ready(function() {
     }
 
     function currentScore(the_score){
+
         $('.score-container').remove();
-        $('.actual-score').append('<div class="score-container"><p class="stat-number">' + the_score + 
+        $('.actual-score').append('<div class="score-container"><p class="stat-number">' + the_score +
             '</p><p class="stat-label">Scramblers Solved</p></div>');
     }
 
@@ -196,7 +192,7 @@ $(document).ready(function() {
     }
 
     function getEmptyY(empty_square){
-        return parseInt($('#board').children('div:nth-of-type(' + empty_square + ')').css('top'));  
+        return parseInt($('#board').children('div:nth-of-type(' + empty_square + ')').css('top'));
     }
 
     function getImageX(clicked_square){
@@ -275,7 +271,7 @@ $(document).ready(function() {
             // increment z-index up from 1 so that new tile is on top of others
             $(clicked_square).css('z-index', zi++);
 
-            // move image square into the empty square position using animate, left and top are in an object of CSS 
+            // move image square into the empty square position using animate, left and top are in an object of CSS
             if (do_animate) {
                 $(clicked_square).animate({
                     left: empty_x,
@@ -319,14 +315,8 @@ $(document).ready(function() {
         });
     });
 
-if (window_width < 520) {
-    $('#scrambler').scrambler(70);
-} if ((window_width > 520) && (window_width < 800)){
-    $('#scrambler').scrambler(130); 
-} if (window_width > 800){
-    $('#scrambler').scrambler(150); 
-}
-
+    // initialize game in #game_object div
+    $('#game_object').scrambler(130);
 });
 
 }(jQuery));
