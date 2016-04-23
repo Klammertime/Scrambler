@@ -19,7 +19,9 @@ Usage
 2. Navigate to the index.html through your web browser to see a basic example 
 4. Adjust the CSS/main.css file to fit your needs
 5. Navigate to the `JS/main.js` file. On line 316, replace `#game_object` with the ID that corresponds to the tag you'd like Scrambler to show up in. Also, replace `130` with the size you'd like each individual square in pixels:
-```$('#game_object').scrambler(130);```
+
+`$('#game_object').scrambler(130);`
+
 6. Include the `CSS/main.css` and `JS/main.js` files in your project
 
 ##Resources
